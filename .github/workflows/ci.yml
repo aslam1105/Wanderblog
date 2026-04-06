@@ -158,5 +158,6 @@ jobs:
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
           git add kubernetes-manifests/backend.yml
           git diff --cached --quiet || git commit -m "ci: update backend image to ${{ steps.get_tag.outputs.next_tag }}"
+          git pull --rebase origin main
           git push
 
