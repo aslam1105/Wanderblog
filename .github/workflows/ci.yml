@@ -98,7 +98,7 @@ jobs:
           git config user.name "Aslam Mulla"
           git config user.email "aslam3117@gmail.com"
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-          git add ../kubernetes-manifests/frontend.yml
+          git add kubernetes-manifests/frontend.yml
           git diff --cached --quiet || git commit -m "ci: update frontend image to ${{ steps.get_tag.outputs.next_tag }}"
           git push
 
@@ -156,7 +156,7 @@ jobs:
           git config user.name "Aslam Mulla"
           git config user.email "aslam3117@gmail.com"
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-          git add ../kubernetes-manifests/backend.yml
+          git add kubernetes-manifests/backend.yml
           git diff --cached --quiet || git commit -m "ci: update backend image to ${{ steps.get_tag.outputs.next_tag }}"
           git push
 
