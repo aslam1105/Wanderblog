@@ -91,14 +91,14 @@ jobs:
           IMAGE_TAG: ${{ steps.get_tag.outputs.next_tag }}
         run: |
           sed -i "s|image: ${{ secrets.DOCKER_USERNAME }}/${{ env.FRONTEND_IMAGE_NAME }}:.*|image: ${{ secrets.DOCKER_USERNAME }}/${{ env.FRONTEND_IMAGE_NAME }}:$IMAGE_TAG|g" \
-            ../kubernetes-manifests/frontend.yml   # Change to your manifest path
+            kubernetes-manifests/frontend.yml   # Change to your manifest path
 
       - name: Commit and push updated frontend manifest
         run: |
           git config user.name "Aslam Mulla"
           git config user.email "aslam3117@gmail.com"
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-          git add ../kubernetes-manifests/frontend.yml
+          git add kubernetes-manifests/frontend.yml
           git diff --cached --quiet || git commit -m "ci: update frontend image to ${{ steps.get_tag.outputs.next_tag }}"
           git push
 
@@ -150,13 +150,13 @@ jobs:
           IMAGE_TAG: ${{ steps.get_tag.outputs.next_tag }}
         run: |
           sed -i "s|image: ${{ secrets.DOCKER_USERNAME }}/${{ env.BACKEND_IMAGE_NAME }}:.*|image: ${{ secrets.DOCKER_USERNAME }}/${{ env.BACKEND_IMAGE_NAME }}:$IMAGE_TAG|g" \
-            ../kubernetes-manifests/backend.yml   # Change to your manifest path
+            kubernetes-manifests/backend.yml   # Change to your manifest path
       - name: Commit and push updated backend manifest
         run: |
           git config user.name "Aslam Mulla"
           git config user.email "aslam3117@gmail.com"
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-          git add ../kubernetes-manifests/backend.yml
+          git add kubernetes-manifests/backend.yml
           git diff --cached --quiet || git commit -m "ci: update backend image to ${{ steps.get_tag.outputs.next_tag }}"
           git push
 
