@@ -24,7 +24,7 @@ spec:
               topologyKey: topology.kubernetes.io/zone
       containers:
         - name: frontend
-          image: gauris17/wanderblog-frontend:v3
+          image: aslam1105/wanderblog-frontend:v8
           ports:
             - containerPort: 80
           envFrom:
